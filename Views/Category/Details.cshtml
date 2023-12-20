@@ -1,0 +1,63 @@
+﻿@model GetAllCategoryDTO
+@using FoodRecipe.Models.DTOs ;
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Nutrient</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
+    <link href="css/element.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Geostar+Fill|Leckerli+One|Montez" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
+    <script src="js/jquery-2.1.1.min.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="./js/EkkoLightbox.js"></script>
+
+</head>
+<body>
+<h1>Category Details</h1>
+
+<div>
+    <h4>Category</h4>
+    <hr />
+    <dl class="row">
+        <dt>
+            Category ID:
+        </dt>
+        <dd >
+            @Model.Id
+        </dd>
+        <dt >
+            Name:
+        </dt>
+        <dd>
+            @Model.Name
+        </dd>
+        <dt >
+            Image URL:
+        </dt>
+        <dd >
+            <img src="@Model.ImgUrl" alt="Category Image" />
+        </dd>
+        <dt >
+            Recipes:
+        </dt>
+        <dd >
+            <ul>
+                @foreach (var recipe in Model.Recipes)
+                {
+                    <li>
+                        <a asp-action="Details"asp-controller="Recipe" asp-route-id="@recipe.RecipeId"> @recipe.Title</a> |
+                       
+                    </li>
+                }
+            </ul>
+        </dd>
+    </dl>
+    <div>
+        <a asp-action="Index">Back to List</a>
+    </div>
+    </div>
+</body>

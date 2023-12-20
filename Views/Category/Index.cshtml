@@ -1,0 +1,48 @@
+﻿@model List<CategoryDTO>
+@using FoodRecipe.Models.DTOs
+
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://images.rawpixel.com/image_600/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTExL3Jhd3BpeGVsb2ZmaWNlMTBfZGl2ZXJzaXR5X2Nob2NvbGF0ZV9iYWNrZ3JvdW5kX19oaW50X29mX3ByZWNpc185Y2ZiMjBiZS04MDNlLTRmNWItODlmZi1mY2RlZGMzN2I1NTZfMS5qcGc.jpg);
+            color: white; /* Change text color if necessary */
+           
+        }
+
+        /* Adjust positioning of category content below the navbar */
+        #category-section {
+            padding-top: 100px; /* Adjust as needed to position content below the navbar */
+        }
+
+        /* Additional styles for category content */
+        /* Add your custom styles here */
+    </style>
+}
+
+<div id="category-section">
+    <div class="container">
+        <h1>Categories</h1>
+        <div>
+            <p>
+                <a asp-action="Create">Create New</a>
+            </p>
+        </div>
+        @foreach (var category in Model)
+        {
+            <div class="menu_2 clearfix">
+                <div class="col-sm-6 space_all">
+                    <img src="@category.ImgUrl" width="100%" height="600px">
+                </div>
+                <div class="col-sm-6 space_all">
+                    <div class="menu_2_right clearfix">
+                        <h1>@category.Name</h1>
+
+                        <a asp-action="Details" asp-route-id="@category.CategoryID" class="btn btn-primary">Details</a>
+                        <a asp-action="Edit" asp-route-id="@category.CategoryID" class="btn btn-primary">Edit</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

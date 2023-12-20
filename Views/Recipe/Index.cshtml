@@ -1,0 +1,52 @@
+﻿@model List<RecipeDTO>
+@using FoodRecipe.Models.DTOs;
+
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://homedecorbliss.com/wp-content/uploads/2022/07/Wood-planks-texture-background..jpg);
+            color: white;
+        }
+
+        /* Adjust positioning of content */
+        #recipe-section {
+            padding-top: 100px; 
+           
+        }
+
+        /* Additional styles for recipe content */
+        /* Add your custom styles here */
+    </style>
+}
+
+<section id="recipe-section">
+    <div class="menu_1 clearfix text-center">
+        <h1 >Recipes</h1>
+    </div>
+
+    @foreach (var recipe in Model)
+    {
+        <div class="menu_2 clearfix">
+            <div class="col-sm-6 space_all">
+                <div class="menu_2_left">
+                    <img src="@recipe.ImgUrl" width="100%" height="600px" style="padding:20px ;">
+                </div>
+            </div>
+            <div class="col-sm-6 space_all">
+                <div class="menu_2_right clearfix">
+                    <h1><a asp-action="Details" asp-route-id="@recipe.RecipeId">@recipe.Title</a></h1>
+                     <a asp-controller="Category" asp-action="Details" asp-route-id="@recipe.CategoryId" >@recipe.CategoryName</a>
+                    <p style="color:#fff">@recipe.Description</p>
+                   
+                    <h5>    <a asp-action="Details" asp-route-id="@recipe.RecipeId">Check That Recipy </a>
+                    </h5> <h5>   <a asp-action="Edit" asp-route-id="@recipe.RecipeId">Edit</a>
+                    </h5><h5> <a asp-action="Delete" asp-route-id="@recipe.RecipeId"class="danger">Delete</a>
+                    </h5>
+                </div>
+            </div>
+        </div>
+    }
+
+    
+</section>

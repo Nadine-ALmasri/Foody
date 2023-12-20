@@ -1,0 +1,18 @@
+﻿@model RecipeDTO
+@using FoodRecipe.Models.DTOs ;
+
+<h1>Edit Recipe</h1>
+
+<form asp-action="Edit" asp-route-id="@Model.RecipeId" method="post">
+    <input type="hidden" asp-for="RecipeId" />
+    <div class="form-group">
+        <label asp-for="Title"></label>
+        <input asp-for="Title" class="form-control" />
+        <label asp-for="Description"></label>
+        <input asp-for="Description" class="form-control" />
+        <label asp-for="ImgUrl"></label>
+        <input asp-for="ImgUrl" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+    <a asp-action="Index">Back to List</a>
+</form>

@@ -1,0 +1,36 @@
+﻿@model Comment
+
+@using FoodRecipe.Models.DTOs
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> signInManager
+@inject UserManager<ApplicationUser> userManager
+
+@{
+    var loggedInUser = await userManager.GetUserAsync(User);
+    var loggedInUserId = loggedInUser?.Id;
+
+}
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="main_comment">
+    <div class="container bootstrap snippets bootdey ">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="blog-comment">
+            <form asp-action="AddComment" method="post">
+        <input type="hidden" asp-for="RecipeID" value="@Model.RecipeID" />
+        <input type="hidden" asp-for="UserId" value="@loggedInUserId" />
+            <div class="panel-body">
+                    <label asp-for="Text"></label>
+                <textarea asp-for="Text" class="form-control" rows="2" placeholder="What are you thinking?"></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                <div class="mar-top clearfix">
+                    <button class="btn btn-sm btn-primary pull-right" type="submit"><i class="fa fa-pencil fa-fw"></i> Share your thoughts</button>
+                 
+                </div>
+            </div>
+            </form>
+        </div>
+        </div>
+        </div>
+        </div></div>
