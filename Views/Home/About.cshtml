@@ -1,4 +1,6 @@
-﻿
+﻿@model List<Book> ;
+@using FoodRecipe.Models
+
 @section Styles {
     <style>
         /* Set background color to black */
@@ -26,47 +28,36 @@
 			<div class="menu_2_right about_menu_right clearfix">
 				<h1>Explore, Create, and Savor</h1>
 				<h2 class="heading_tag"> Embark on a Culinary Odyssey with Food Recipe</h2>
-				<p>At Food Recipe, we're passionate about culinary exploration and bringing the joy of cooking to your fingertips. Our platform is a hub for food enthusiasts, home cooks, and seasoned chefs alike, offering a diverse collection of mouthwatering recipes, culinary inspiration, and cooking tips. From tantalizing appetizers to delectable main courses and irresistible desserts, we curate a rich tapestry of flavors from around the world. Whether you're seeking quick weekday meals, experimenting with new cuisines, or preparing for special occasions, our goal is to empower you with step-by-step recipes, cooking techniques, and expert advice that elevate your kitchen adventures. Join our community and embark on a delightful gastronomic journey with us!<br> Nadine Almasri.</p>
+				<p style="color:darkseagreen !important ; ">At Food Recipe, we're passionate about culinary exploration and bringing the joy of cooking to your fingertips. Our platform is a hub for food enthusiasts, home cooks, and seasoned chefs alike, offering a diverse collection of mouthwatering recipes, culinary inspiration, and cooking tips. From tantalizing appetizers to delectable main courses and irresistible desserts, we curate a rich tapestry of flavors from around the world. Whether you're seeking quick weekday meals, experimenting with new cuisines, or preparing for special occasions, our goal is to empower you with step-by-step recipes, cooking techniques, and expert advice that elevate your kitchen adventures. Join our community and embark on a delightful gastronomic journey with us!<br> Nadine Almasri.</p>
 			</div>
 		</div>
 	</div>
 </section>
 <section id="about_middle">
-	<div class="container">
-		<div class="row">
-			<div class="about_middle clearfix text-center">
-				<h1>Our Best Cooking Cookin Book</h1>
-			</div>
-			<div class="about_middle_1 clearfix">
-				<div class="col-sm-4">
-					<div class="about_middle_1_inner clearfix">
-						<img src="https://m.media-amazon.com/images/I/91GqAI8VDUL._SY425_.jpg" width="100%" height="300px">
+    <div class="container">
+        <div class="row">
+            <div class="about_middle clearfix text-center">
+                <h1>Our Best Cooking Books</h1>
+            </div>
+            <div class="about_middle_1 clearfix">
+                @if (Model != null && Model.Count >= 3)
+                {
+                    @for (int i = 0; i < 3; i++)
+                    {
+                        <div class="col-sm-4">
+                            <div class="about_middle_1_inner clearfix">
+                                <img src="@Model[i].ImageUrl" width="100%" height="300px">
 
-						<h3>The Complete Cookbook for Young Chefs</h3>
-						<p> Want to bake the most-awesome-ever cupcakes? Or surprise your family with breakfast tacos on Sunday morning? Looking for a quick snack after school? Or maybe something special for a sleepover? It's all here. Learn to cook like a pro―it's easier than you think.</p>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="about_middle_1_inner clearfix">
-						<img src="https://m.media-amazon.com/images/I/81o-PyNHxbL._SL1500_.jpg" width="100%" height="300px">
-
-						<h3>Baking Yesteryear</h3>
-						<p>A decade-by-decade cookbook that highlights the best (and a few of the worst) baking recipes from the 20th century</p>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="about_middle_1_inner clearfix">
-						<img src="https://m.media-amazon.com/images/I/91mis0XfORL._SL1500_.jpg" width="100%" height="300px">
-
-						<h3>Snoop Dogg Presents Goon with the Spoon</h3>
-						<p>NEW YORK TIMES BESTSELLER • The follow-up to From Crook to Cook, this next-level cookbook is all about bringing together memorable meals for any occasion, with 65+ recipes from rappers Snoop Dogg and E-40.</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+                                <a asp-controller="Book" asp-action="Details" asp-route-id="@Model[i].Id">  <h3>@Model[i].Title</h3></a>
+                                <p>@Model[i].Description</p>
+                            </div>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
 </section>
-
 <section id="about_home" class="about_home_page">
 	<div class="about_home_main clearfix">
 		<div class="container">

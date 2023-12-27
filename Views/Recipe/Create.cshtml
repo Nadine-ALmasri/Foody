@@ -1,16 +1,81 @@
 ﻿@model RecipeDTO
-@using FoodRecipe.Models.DTOs ; 
-<h1>Create Recipe</h1>
+@using FoodRecipe.Models.DTOs
 
-<form asp-action="Create">
-    <div class="form-group">
-        <label asp-for="Title"></label>
-        <input asp-for="Title" class="form-control" />
-        <label asp-for="Description"></label>
-        <input asp-for="Description" class="form-control" />
-        <label asp-for="ImgUrl"></label>
-        <input asp-for="ImgUrl" class="form-control" />
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a asp-action="Index">Back to List</a>
-</form>
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://homedecorbliss.com/wp-content/uploads/2022/07/Wood-planks-texture-background..jpg);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* Adjust positioning of content */
+        .section-container {
+            padding-top: 150px;
+            padding-bottom: 300px;
+        }
+
+        /* Apply contact-form class styling */
+        .contact-form {
+            margin-top: 20px;
+        }
+
+            .contact-form label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .contact-form input[type="text"],
+            .contact-form input[type="file"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+
+        .btn-create {
+            margin-top: 20px;
+        }
+    </style>
+}
+
+<div class="section-container">
+    <h1>Create Recipe</h1>
+
+    <form asp-action="Create" class="contact-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="contact_2">
+                        <label asp-for="Title"></label>
+                        <input asp-for="Title" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact_2">
+                        <label asp-for="Description"></label>
+                        <input asp-for="Description" class="form-control" />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact_2">
+                        <label asp-for="ImgUrl"></label>
+                        <input asp-for="ImgUrl" class="form-control" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-primary btn-create">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

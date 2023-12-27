@@ -1,0 +1,106 @@
+﻿@model List<Book>
+@using Microsoft.AspNetCore.Identity;
+@using FoodRecipe.Models;
+@inject SignInManager<ApplicationUser> signInManager
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://th.bing.com/th/id/OIP.bacnlWcEwHYUe-f64_QzrAHaEo?rs=1&pid=ImgDetMain);
+            color: white;
+        }
+
+        /* Adjust positioning of content */
+        #about_home {
+            padding-top: 130px;
+        }
+
+        /* Book card styling */
+        .book-card {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            color: #000000; /* Set font color to black */
+            height: 500px; /* Fixed height for consistent card size */
+        }
+
+            .book-card img {
+                width: 100%;
+                border-radius: 8px;
+                height: 300px; /* Adjust image height within the card */
+            }
+
+            .book-card h5 {
+                margin-top: 10px;
+                height: 45px; /* Title height adjustment */
+            }
+
+            .book-card p {
+                height: 17px; /* Price height adjustment */
+            }
+
+            .book-card a {
+                height: 53px; /* Button height adjustment */
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                text-decoration: none; /* Remove default link decoration */
+            }
+    </style>
+}
+
+<section id="about_home" class="about_home_page about_team services_page">
+    <div class="about_home_main clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="about_home text-center clearfix">
+                    <h1 style="color: black;">Our Books</h1>
+                    <p style="color: black;">
+                        Welcome to our collection of online cooking books! Whether you're a beginner or a seasoned chef, explore our diverse range of recipes, techniques, and culinary inspirations to elevate your cooking experience. Discover a variety of cuisines, cooking methods, and tips shared by renowned chefs and food enthusiasts. Start your culinary adventure today by browsing through our selection of cooking books below.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+<p>
+    @if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")))
+    {
+        <a asp-action="Create" class="p-3">Add New Book</a>
+    }
+</p>
+
+<div class="container">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-sm-4">
+                <div class="book-card">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="Product Image">
+                    <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">     <h5>@item.Title</h5></a>
+                    <p  style="color:red ;">Price: $@item.Price</p>
+                    <div class="justify-content-between">
+                        <a asp-controller="Book" asp-action="Details" asp-route-id="@item.Id">Details</a>
+                        @if (signInManager.IsSignedIn(User))
+                        {
+                            <a asp-controller="Book" asp-action="AddProductToCart" asp-route-product="@item.Id">
+                                <span id="boot-icon" class="bi bi-cart4" style="height:35px; color: rgb(0, 0, 0);">Add To Your Cart</span>
+                            </a>
+                        }
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<div>
+    <a asp-controller="Home" asp-action="Index">Back to home page</a>
+</div>

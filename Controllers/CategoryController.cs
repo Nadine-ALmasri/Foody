@@ -1,5 +1,6 @@
 ﻿using FoodRecipe.Models.DTOs;
 using FoodRecipe.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace FoodRecipe.Controllers
@@ -39,6 +40,7 @@ namespace FoodRecipe.Controllers
         {
             return View();
         }
+        [Authorize(Roles = "Administrator")]
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -51,6 +53,7 @@ namespace FoodRecipe.Controllers
             }
             return View(category);
         }
+        [Authorize(Roles = "Administrator,Editor")]
 
         // GET: Category/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -68,6 +71,7 @@ namespace FoodRecipe.Controllers
 
             return View(category);
         }
+        [Authorize(Roles = "Administrator,Editor")]
 
         [HttpPost]
        // [ValidateAntiForgeryToken]
@@ -85,6 +89,7 @@ namespace FoodRecipe.Controllers
             }
             return View(category);
         }
+        [Authorize(Roles = "Administrator")]
 
         // GET: Category/Delete/5
         public async Task<IActionResult> Delete(int? id)

@@ -1,6 +1,45 @@
 ﻿@model RecipeDTO
 @using FoodRecipe.Models.DTOs ;
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://homedecorbliss.com/wp-content/uploads/2022/07/Wood-planks-texture-background..jpg);
+            color: white;
+            min-height: 100vh;
+        }
 
+        /* Adjust positioning of content */
+        #recipe-section {
+            padding-top: 50px;
+            padding-bottom: 100px;
+        }
+
+        /* Additional styles for recipe content */
+        .contact-form {
+            margin-top: 20px;
+        }
+
+            .contact-form label {
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .contact-form input[type="text"] {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border-radius: 5px;
+                border: 1px solid #ccc;
+                box-sizing: border-box;
+            }
+
+        .btn-save {
+            margin-top: 20px;
+        }
+    </style>
+}
+<div id="recipe-section">
 <h1>Delete Recipe</h1>
 
 <p>Are you sure you want to delete this?</p>
@@ -20,4 +59,5 @@
         <input type="submit" value="Delete" class="btn btn-danger" />
         <a asp-action="Index">Back to List</a>
     </form>
+</div>
 </div>

@@ -1,5 +1,8 @@
-﻿
-@model List<CategoryDTO>
+﻿@model FoodRecipe.Models.DTOs.CategoryBookViewModel
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> signInManager
+
 @using FoodRecipe.Models.DTOs
 	
 
@@ -47,7 +50,7 @@
 	<section id="menu_home" class="clearfix">
 		<div class="menu_home clearfix">
 
-@foreach (var category in Model)
+@foreach (var category in Model.Categories)
 {
 
 
@@ -74,37 +77,33 @@
 				<div class="about_home text-center clearfix">
 					<h2><i class="fa fa-apple"></i></h2>
 					<h1>OFFER OF THE DAY</h1>
-					<h3 class="heading_tag">Book your order</h3>
+					<h3 class="heading_tag">Get your Book</h3>
 				</div>
-				<div class="offer_home  clearfix">
-					<div class="col-sm-4">
-						<div class="offer_home_inner text-center">
-							<a href="#"><img class="img-rounded" src="https://www.templateonweb.com/upload/aedemodir/0266e33d3f546cb5436a10798e657d97/img/7.jpg" width="100%" height="400px"></a>
-							<h3><a href="#">SED CURSUS DAPIBUS</a></h3>
-							<p class="heading_tag">Lorem, ipsum, dolor </p>
-							<h2>$6.65</h2>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="offer_home_inner text-center">
-							<a href="#"><img class="img-rounded" src="https://www.templateonweb.com/upload/aedemodir/0266e33d3f546cb5436a10798e657d97/img/8.jpg" width="100%" height="400px"></a>
-							<h3><a href="#">IMPERDIET</a></h3>
-							<p class="heading_tag">Dapibus, nulla, elementum </p>
-							<h2>$6.65</h2>
-						</div>
-					</div>
-					<div class="col-sm-4">
-						<div class="offer_home_inner text-center">
-							<a href="#"><img class="img-rounded" src="https://www.templateonweb.com/upload/aedemodir/0266e33d3f546cb5436a10798e657d97/img/9.jpg" width="100%" height="400px"></a>
-							<h3><a href="#">DUIS SAGITTIS IPSUM</a></h3>
-							<p class="heading_tag">Integer, ipsum, libero </p>
-							<h2>$6.65</h2>
+			<section id="about_middle">
+				<div class="container">
+					<div class="row">
+						
+						<div class="about_middle_1 clearfix">
+							@if (Model != null && Model.Books.Count >= 3)
+							{
+								@for (int i = 0; i < 3; i++)
+								{
+									<div class="col-sm-4">
+										<div class="about_middle_1_inner clearfix">
+											<img src="@Model.Books[i].ImageUrl" width="100%" height="300px">
+
+											<a asp-controller="Book" asp-action="Details" asp-route-id="@Model.Books[i].Id">  <h3>@Model.Books[i].Title</h3></a>
+											<p>@Model.Books[i].Description</p>
+										</div>
+									</div>
+								}
+							}
 						</div>
 					</div>
 				</div>
-				<div class="offer_home_1 text-center  clearfix">
-					<h4><a href="#">SEE DISHES</a></h4>
+			</section>
 				</div>
+				
 			</div>
 		</div>
 	</section>

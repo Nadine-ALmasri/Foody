@@ -30,7 +30,16 @@ namespace FoodRecipe
             builder.Services.AddTransient<ICategory, CategoryService>();
             builder.Services.AddTransient<IRecipe, RecipeServices>();
             builder.Services.AddTransient<IUserService, UserService>();
-            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+			builder.Services.AddScoped<IEmailSender, EmailSender>();
+			builder.Services.AddTransient<ICart,CartService>();
+
+			builder.Services.AddTransient<IBook, BookService>();
+			builder.Services.AddTransient<IOrder, OrderServices>();
+
+
+
+			builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+
     .AddEntityFrameworkStores<FoodDbContaxt>();
             builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
               .AddCookie(options =>

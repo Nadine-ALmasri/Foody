@@ -1,0 +1,52 @@
+﻿@model FoodRecipe.Models.DTOs.UserEmailDTO
+
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://homedecorbliss.com/wp-content/uploads/2022/07/Wood-planks-texture-background..jpg);
+            color: white;
+        }
+
+        /* Adjust positioning of content */
+        #recipe-section {
+            padding-top: 200px;
+            color: black;
+        }
+
+        /* Additional styles for recipe content */
+        /* Add your custom styles here */
+
+
+
+    </style>
+}
+
+<div class="container " id="recipe-section">
+    <div class="form-container">
+        <h1>We extend our heartfelt gratitude for choosing to shop with us. Rest assured, an email containing details of your purchase will be promptly dispatched to your inbox</h1>
+
+        <form method="post" asp-action="ProcessOrder">
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" class="form-control" id="email" name="User.Email" value="@ViewBag.Email" required>
+            </div>
+
+            @for (int i = 0; i < Model.ShoppingCart.CartBooks.Count; i++)
+            {
+                <input type="hidden" name="User.ShoppingCart.CartProducts[@i].ProductId" value="@Model.ShoppingCart.CartBooks[i].BookId" />
+                <input type="hidden" name="User.ShoppingCart.CartProducts[@i].Quantity" value="@Model.ShoppingCart.CartBooks[i].Quantity" />
+                <input type="hidden" name="User.ShoppingCart.CartProducts[@i].Product.Name" value="@Model.ShoppingCart.CartBooks[i].Book.Title" />
+                <input type="hidden" name="User.ShoppingCart.CartProducts[@i].Product.Price" value="@Model.ShoppingCart.CartBooks[i].Book.Price" />
+            }
+
+            <input type="hidden" name="User.ShoppingCart.Total" value="@Model.ShoppingCart.Total" />
+            <input type="hidden" name="User.Phone" value="@Model.Phone" />
+            <input type="hidden" name="User.UserName" value="@Model.UserName" />
+
+            <button type="submit" class="btn btn-outline-secondary m-4">Submit Email</button>
+        </form>
+
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-secondary m-4">Back to home page</a>
+    </div>
+</div>

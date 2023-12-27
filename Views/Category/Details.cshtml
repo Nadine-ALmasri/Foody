@@ -1,63 +1,48 @@
 ﻿@model GetAllCategoryDTO
-@using FoodRecipe.Models.DTOs ;
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nutrient</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link href="css/element.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Geostar+Fill|Leckerli+One|Montez" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="./js/EkkoLightbox.js"></script>
+@using FoodRecipe.Models.DTOs;
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://images.unsplash.com/photo-1636953056323-9c09fdd74fa6?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8fA%3D%3D);
+            color: white;
+        }
 
-</head>
-<body>
-<h1>Category Details</h1>
+        /* Adjust positioning of content */
+        #recipe-section {
+            padding-top: 50px;
+            padding-left: 100px;
+        }
 
-<div>
-    <h4>Category</h4>
-    <hr />
-    <dl class="row">
-        <dt>
-            Category ID:
-        </dt>
-        <dd >
-            @Model.Id
-        </dd>
-        <dt >
-            Name:
-        </dt>
-        <dd>
-            @Model.Name
-        </dd>
-        <dt >
-            Image URL:
-        </dt>
-        <dd >
-            <img src="@Model.ImgUrl" alt="Category Image" />
-        </dd>
-        <dt >
-            Recipes:
-        </dt>
-        <dd >
-            <ul>
-                @foreach (var recipe in Model.Recipes)
-                {
-                    <li>
-                        <a asp-action="Details"asp-controller="Recipe" asp-route-id="@recipe.RecipeId"> @recipe.Title</a> |
-                       
-                    </li>
-                }
-            </ul>
-        </dd>
-    </dl>
+     
+        
+    </style>
+}
+<section id="recipe-section">
+    <section id="about">
+        <div class="menu_1 clearfix text-center">
+        <h1>@Model.Name</h1>
+    </div>
+        <div class="col-sm-6 space_all">
+            <div class="menu_2_left p-5 pt-5 " >
+    <img class="category-image" src="@Model.ImgUrl" alt="Category Image" />
+            </div>
+        </div>
+        <div class="col-sm-6 space_all">
+            <div class="menu_2_right about_menu_right clearfix">
+        <h2>Recipes:</h2>
+        <ul>
+            @foreach (var recipe in Model.Recipes)
+            {
+                <li>
+                            <h3>  <a asp-action="Details" asp-controller="Recipe" asp-route-id="@recipe.RecipeId">@recipe.Title</a></h3>
+                        </li>
+            }
+        </ul>
+    </div>
+    </div>
     <div>
         <a asp-action="Index">Back to List</a>
     </div>
-    </div>
-</body>
+</section>
+</section>

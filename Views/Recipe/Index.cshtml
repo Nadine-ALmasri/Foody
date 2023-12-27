@@ -1,6 +1,9 @@
 ﻿@model List<RecipeDTO>
 @using FoodRecipe.Models.DTOs;
 
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> signInManager
 @section Styles {
     <style>
         /* Set background color to black */
@@ -11,10 +14,10 @@
 
         /* Adjust positioning of content */
         #recipe-section {
-            padding-top: 100px; 
+            padding-top: 130px; 
            
         }
-
+      
         /* Additional styles for recipe content */
         /* Add your custom styles here */
     </style>
@@ -23,8 +26,10 @@
 <section id="recipe-section">
     <div class="menu_1 clearfix text-center">
         <h1 >Recipes</h1>
-    </div>
-
+    </div> @if(User.IsInRole("Administrator"))
+                        {
+        <h3>  <a asp-controller="Recipe" asp-action="Create" style="color:orangered">Add New Recipe</a></h3>
+                        }
     @foreach (var recipe in Model)
     {
         <div class="menu_2 clearfix">
@@ -36,14 +41,18 @@
             <div class="col-sm-6 space_all">
                 <div class="menu_2_right clearfix">
                     <h1><a asp-action="Details" asp-route-id="@recipe.RecipeId">@recipe.Title</a></h1>
-                     <a asp-controller="Category" asp-action="Details" asp-route-id="@recipe.CategoryId" >@recipe.CategoryName</a>
+                    <a asp-controller="Category" asp-action="Details" asp-route-id="@recipe.CategoryId" style="color:orangered;font-size:25px ;">@recipe.CategoryName</a>
                     <p style="color:#fff">@recipe.Description</p>
-                   
-                    <h5>    <a asp-action="Details" asp-route-id="@recipe.RecipeId">Check That Recipy </a>
-                    </h5> <h5>   <a asp-action="Edit" asp-route-id="@recipe.RecipeId">Edit</a>
-                    </h5><h5> <a asp-action="Delete" asp-route-id="@recipe.RecipeId"class="danger">Delete</a>
-                    </h5>
-                </div>
+
+                    <h5>
+                        <a asp-action="Details" asp-route-id="@recipe.RecipeId" style="color:orangered;font-size:25px ;">Check That Recipy </a>
+                        @if (User.IsInRole("Administrator"))
+                        {
+                            <h3>
+                                <a asp-action="Edit" asp-route-id="@recipe.RecipeId" style="color:orangered ;font-size:25px ;">Edit</a>
+                            </h3><h3> <a asp-action="Delete" asp-route-id="@recipe.RecipeId"class="btn btn-danger">Delete</a>}
+                    </h3>
+                }</div>
             </div>
         </div>
     }

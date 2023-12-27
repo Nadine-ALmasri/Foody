@@ -1,36 +1,64 @@
 ﻿@model CategoryDTO
-@using FoodRecipe.Models.DTOs ;
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nutrient</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link href="css/element.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Geostar+Fill|Leckerli+One|Montez" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="./js/EkkoLightbox.js"></script>
+@using FoodRecipe.Models.DTOs;
 
-</head>
-<body>
-<h1>Create Category</h1>
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://images.rawpixel.com/image_600/cHJpdmF0ZS9sci9pbWFnZXMvd2Vic2l0ZS8yMDIzLTExL3Jhd3BpeGVsb2ZmaWNlMTBfZGl2ZXJzaXR5X2Nob2NvbGF0ZV9iYWNrZ3JvdW5kX19oaW50X29mX3ByZWNpc185Y2ZiMjBiZS04MDNlLTRmNWItODlmZi1mY2RlZGMzN2I1NTZfMS5qcGc.jpg);
+            color: white; /* Change text color if necessary */
+        }
 
-<form asp-action="Create">
-    <div >
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
-        <span asp-validation-for="Name" class="text-danger"></span>
-    </div>
-    <div >
-        <label asp-for="ImgUrl"></label>
-        <input asp-for="ImgUrl" class="form-control" />
-        <span asp-validation-for="ImgUrl" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Create</button>
-    <a asp-action="Index">Back to List</a>
+        /* Adjust positioning of content */
+        #create-category-section {
+            padding-top: 150px;
+            padding-bottom: 300px;
+        }
+
+        /* Additional styles for create category content */
+        form {
+            margin-top: 20px;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .btn-save {
+            margin-top: 20px;
+        }
+    </style>
+}
+
+<div id="create-category-section">
+    <h1>Create Category</h1>
+    <form asp-action="Create" class="form-group">
+        <div>
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="ImgUrl"></label>
+            <input asp-for="ImgUrl" class="form-control" />
+            <span asp-validation-for="ImgUrl" class="text-danger"></span>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-primary btn-save">Create</button>
+            <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+        </div>
     </form>
-</body>
+</div>

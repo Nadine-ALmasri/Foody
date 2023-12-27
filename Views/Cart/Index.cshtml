@@ -1,0 +1,118 @@
+﻿@using Microsoft.AspNetCore.Identity
+@inject SignInManager<ApplicationUser> signInManager
+
+@model FoodRecipe.Models.Cart
+
+@{
+    Layout = ViewBag.Layout;
+    Html.RenderPartialAsync("_CartBodyPartial", Model);
+}
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://homedecorbliss.com/wp-content/uploads/2022/07/Wood-planks-texture-background..jpg);
+            color: white;
+        }
+
+        /* Adjust positioning of content */
+        #recipe-section {
+            padding-top: 200px;
+        }
+
+        /* Additional styles for recipe content */
+        /* Add your custom styles here */
+
+
+
+        .quantity-container {
+            display: inline-block;
+            border: 2px solid #333;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .quantity {
+            font-weight: bold;
+        }
+
+        .plus-minus-icons {
+            margin-top: 10px;
+        }
+
+        .plus-icon {
+            color: green;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .minus-icon {
+            color: red;
+            font-size: 24px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .table {
+            color: brown;
+        }
+    </style>
+}
+
+@*@{
+    double TotalPrice = ViewBag.Total.Result;
+    double Total = 0;
+}
+<h1>Your Shopping Cart</h1>
+
+@if (Model.CartProducts.Count == 0)
+{
+    <div class="row" style="min-height: 100vh ;">
+        <p>Your cart is empty.</p>
+    </div>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var cartProduct in Model.CartProducts)
+            {
+                <tr>
+                    <td>
+                        <img src="@cartProduct.Product.ImageUrl" class="img-fluid" style="width: 150px;" alt="Product Image">
+                        @cartProduct.Product.Name
+                    </td>
+                    <td>@cartProduct.Quantity</td>
+                    <td>@cartProduct.Product.Price</td>
+                    <td>@(cartProduct.Quantity * cartProduct.Product.Price)</td>
+                    @{
+                        Total += (cartProduct.Quantity * cartProduct.Product.Price);
+                    }
+                    <td> <a asp-controller="Cart" asp-action="DeleteProductFromCart" asp-route-id="@cartProduct.Product.Id" class="btn btn-outline-dark , m-4">Delete</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <p>Total: @(Total)</p>
+    <form>
+        <button type="submit" class="btn btn-outline-dark , m-4" asp-controller="Cart" asp-action="Checkout">Proceed to Checkout</button>
+    </form>
+
+    <div>
+        <a asp-controller="Home" asp-action="Index" class="btn btn-outline-dark , m-4">Back to home page</a>
+    </div>
+}
+
+*@

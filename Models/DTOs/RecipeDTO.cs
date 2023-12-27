@@ -14,6 +14,15 @@
 
 
     }
+    public class RecipeUpdate
+    {
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string Steps { get; set; }
+        public string ImgUrl { get; set; }
+
+
+    }
     public class GetRecipiesDTO
     {
         public int RecipeId { get; set; }

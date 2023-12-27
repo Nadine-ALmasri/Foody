@@ -1,4 +1,5 @@
 ﻿using FoodRecipe.Models;
+using FoodRecipe.Models.DTOs;
 using FoodRecipe.Models.Interface;
 using FoodRecipe.Models.Services;
 using Microsoft.AspNetCore.Mvc;
@@ -10,21 +11,32 @@ namespace FoodRecipe.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 		private readonly ICategory _categoryService;
+        private readonly IBook _bookService;
 
-		public HomeController(ILogger<HomeController> logger , ICategory categoryService)
+        public HomeController(ILogger<HomeController> logger , ICategory categoryService, IBook bookService)
         {
             _logger = logger;
             _categoryService = categoryService;
+            _bookService = bookService;
         }
 
         public async Task< IActionResult >Index()
         {
-			var categories = await _categoryService.GetAllCategories();
-			return View(categories);
+            var books = await _bookService.GetAllProducts();
+            var categories = await _categoryService.GetAllCategories();
+			var viewModel = new CategoryBookViewModel
+			{
+				Categories = categories,
+				Books = books
+			};
+
+			return View(viewModel);
 		}
-		public IActionResult About()
+		public async Task< IActionResult> About()
 		{
-			return View();
+            var books = await _bookService.GetAllProducts();
+
+            return View(books);
 		}
 		public IActionResult Privacy()
         {

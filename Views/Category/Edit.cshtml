@@ -1,42 +1,86 @@
 ﻿@model GetAllCategoryDTO
 @using FoodRecipe.Models.DTOs
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Nutrient</title>
-    <link href="css/bootstrap.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css" />
-    <link href="css/element.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Geostar+Fill|Leckerli+One|Montez" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Russo+One" rel="stylesheet">
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/bootstrap.js"></script>
-    <script src="./js/EkkoLightbox.js"></script>
 
-</head>
-<body>
-<h1>Edit Category</h1>
 
-<form asp-controller="Category" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data">
-    <div class="form-group">
-        <label asp-for="Id"></label>
-        <input asp-for="Id" class="form-control" readonly />
-        <label asp-for="Name"></label>
-        <input asp-for="Name" class="form-control" />
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://homedecorbliss.com/wp-content/uploads/2022/07/Wood-planks-texture-background..jpg);
+            color: white;
+            min-height: 100vh;
+        }
 
-        <span asp-validation-for="Name" class="text-danger"></span>
-        <label asp-for="ImgUrl"></label>
-        <input asp-for="ImgUrl" type="file" class="form-control" accept="image/*" />
-        <span asp-validation-for="ImgUrl" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <input type="submit" value="Save" class="btn btn-primary" />
-    </div>
-</form>
-<br />
-<p>
-    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Back to List</a>
-</p>
-</body>
+        /* Adjust positioning of content */
+        .section-container {
+            padding-top: 250px;
+            padding-bottom: 400px;
+        }
+
+        /* Apply contact-form class styling to match the RecipeDTO view */
+        .contact-form {
+            margin-top: 20px;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .contact-form input[type="text"],
+        .contact-form input[type="file"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        .btn-save {
+            margin-top: 20px;
+        }
+    </style>
+}
+
+<div class="section-container">
+    <h1>Edit Category</h1>
+
+    <form asp-controller="Category" asp-action="Edit" asp-route-id="@Model.Id" method="post" enctype="multipart/form-data" class="contact-form">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="contact_2">
+                        <label asp-for="Id"></label>
+                        <input asp-for="Id" class="form-control" readonly />
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact_2">
+                        <label asp-for="Name"></label>
+                        <input asp-for="Name" class="form-control" />
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="contact_2">
+                        <label asp-for="ImgUrl"></label>
+                        <input asp-for="ImgUrl" type="file" class="form-control" accept="image/*" />
+                        <span asp-validation-for="ImgUrl" class="text-danger"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <input type="submit" value="Save" class="btn btn-primary btn-save" />
+                    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+

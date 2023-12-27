@@ -1,6 +1,7 @@
 ﻿using FoodRecipe.Models;
 using FoodRecipe.Models.DTOs;
 using FoodRecipe.Models.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,10 +39,13 @@ namespace FoodRecipe.Controllers
 
             return View(recipe);
         }
+        [Authorize(Roles = "Administrator")]
+
         public IActionResult Create()
         {
             return View();
         }
+        [Authorize(Roles = "Administrator")]
 
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -54,6 +58,7 @@ namespace FoodRecipe.Controllers
             }
             return View(recipe);
         }
+        [Authorize(Roles = "Administrator,Editor")]
 
         // GET: Recipe/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -71,26 +76,24 @@ namespace FoodRecipe.Controllers
 
             return View(recipe);
         }
+        [Authorize(Roles = "Administrator,Editor")]
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, RecipeDTO recipe)
+        public async Task<IActionResult> Edit(int id, RecipeUpdate recipe)
         {
-            if (id != recipe.RecipeId)
-            {
-                return NotFound();
-            }
-
-            if (ModelState.IsValid)
-            {
+           
+           
                 var updatedRecipe = await _recipeService.UpdateRecipe(id, recipe);
                 if (updatedRecipe == null)
                 {
                     return NotFound();
                 }
                 return RedirectToAction(nameof(Index));
-            }
+            
             return View(recipe);
         }
+        [Authorize(Roles = "Administrator")]
 
         // GET: Recipe/Delete/5
         public async Task<IActionResult> Delete(int? id)

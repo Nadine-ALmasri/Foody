@@ -1,0 +1,54 @@
+﻿@model Book
+
+<h4>Edit Product</h4>
+<hr />
+<form asp-controller="Product" asp-action="Edit" method="post">
+        <div asp-validation-summary="All" class="text-warning"></div>
+       <div class="form-group">
+       <input asp-for="Id" type="hidden" />
+       </div>
+
+        <div class="form-group">
+        <label asp-for="Title" class="control-label" ></label>
+        <input asp-for="Title" placeholder="@Model.Title" class="form-control" />
+        </div>
+
+        <div class="form-group">
+        <label asp-for="Price" class="control-label"></label>
+        <input asp-for="Price" class="form-control" />
+        </div>
+
+        <div class="form-group">
+        <label asp-for="Description" class="control-label"></label>
+        <input asp-for="Description" class="form-control" />
+        </div>
+
+    <br />
+
+   
+
+    <div>
+    <input hidden asp-for="ImageUrl" />
+    </div>
+
+    <div class="form-group" style="margin-top:50px;">
+    @if (!string.IsNullOrEmpty(Model.ImageUrl))
+    {
+            <img src="@(Model.ImageUrl)" alt="Product Image" style="max-width:500px; max-height:500px" />
+    }
+    else
+    {
+    <p>No image available.</p>
+    }
+    </div>
+    
+    
+        <br />
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+    </div>
+</form>
+<br />
+<p>
+    <a asp-action="Details" asp-route-id="@Model.Id" class="btn btn-secondary">Back to List</a>
+</p>

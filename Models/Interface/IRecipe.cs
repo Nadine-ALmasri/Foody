@@ -6,7 +6,7 @@ namespace FoodRecipe.Models.Interface
         Task<List<RecipeDTO>> GetAllRecipes();
         Task<RecipeDTO> GetRecipeById(int recipeId);
         Task<RecipeDTO> CreateRecipe(RecipeDTO recipe);
-        Task<RecipeDTO> UpdateRecipe(int id ,RecipeDTO recipe);
+        Task<RecipeUpdate> UpdateRecipe(int id , RecipeUpdate recipe);
         Task DeleteRecipe(int recipeId);
         Task<Comment> AddComment(Comment comment);
     }

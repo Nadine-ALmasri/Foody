@@ -1,5 +1,8 @@
 ﻿@model List<CategoryDTO>
 @using FoodRecipe.Models.DTOs
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<ApplicationUser> signInManager
 
 @section Styles {
     <style>
@@ -12,7 +15,7 @@
 
         /* Adjust positioning of category content below the navbar */
         #category-section {
-            padding-top: 100px; /* Adjust as needed to position content below the navbar */
+            padding-top: 150px; /* Adjust as needed to position content below the navbar */
         }
 
         /* Additional styles for category content */
@@ -24,9 +27,11 @@
     <div class="container">
         <h1>Categories</h1>
         <div>
+             @if(User.IsInRole("Administrator"))
+                        {
             <p>
                 <a asp-action="Create">Create New</a>
-            </p>
+            </p>}
         </div>
         @foreach (var category in Model)
         {
@@ -36,10 +41,14 @@
                 </div>
                 <div class="col-sm-6 space_all">
                     <div class="menu_2_right clearfix">
-                        <h1>@category.Name</h1>
-
-                        <a asp-action="Details" asp-route-id="@category.CategoryID" class="btn btn-primary">Details</a>
-                        <a asp-action="Edit" asp-route-id="@category.CategoryID" class="btn btn-primary">Edit</a>
+                        <a asp-action="Details" asp-route-id="@category.CategoryID" class="tag_menu" style="color:wheat">  <h1>@category.Name</h1></a>
+<br/>
+                        <a asp-action="Details" asp-route-id="@category.CategoryID" style="font-size:20px; padding-top:15px;padding:15px ; color:burlywood">Details</a>
+                        @if(User.IsInRole("Administrator"))
+                        {
+                            <a asp-action="Edit" asp-route-id="@category.CategoryID" style="font-size:20px; padding-top:15px;padding:15px ; color:burlywood">Edit</a>
+                            <a asp-action="Delete" asp-route-id="@category.CategoryID" style="font-size:20px; padding-top:15px;padding:15px ; color:red">Delete</a>
+                        }
                     </div>
                 </div>
             </div>

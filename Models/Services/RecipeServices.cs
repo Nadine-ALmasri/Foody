@@ -137,19 +137,15 @@ namespace FoodRecipe.Models.Services
             return newRecipe;
         }
 
-        public async Task<RecipeDTO> UpdateRecipe(int id, RecipeDTO recipe)
+        public async Task<RecipeUpdate> UpdateRecipe(int id, RecipeUpdate recipe)
         {
             var recipeToUpdate = await _context.Recipes.FindAsync(id);
             if (recipeToUpdate != null)
             {
                 recipeToUpdate.Title = recipe.Title;
-                recipeToUpdate.CategoryId = recipe.CategoryId;
                 recipeToUpdate.Description = recipe.Description;
                 recipeToUpdate.Steps = recipe.Steps;
                 recipeToUpdate.ImgUrl = recipe.ImgUrl;
-                // Remove all existing ingerdiants and add the ones from DTO
-                recipeToUpdate.IngredientRecipes.Clear();
-                recipeToUpdate.IngredientRecipes= recipe.Ingredient.Select(a => new IngredientRecipe {IngredientId = a.IngredientID }).ToList(); ; // Commented out as you might not directly assign ingredients here
                 _context.Entry(recipeToUpdate).State = EntityState.Modified;
                 await _context.SaveChangesAsync();
 

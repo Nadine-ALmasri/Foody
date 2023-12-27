@@ -1,0 +1,121 @@
+﻿@model Book
+@using Microsoft.AspNetCore.Identity;
+@using FoodRecipe.Models;
+@inject SignInManager<ApplicationUser> signInManager
+
+<div>
+
+    @if (signInManager.IsSignedIn(User) && User.IsInRole("Editor ,Administrator"))
+            {
+                
+                    <form asp-controller="Book" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+                        <div>
+                            <!-- Add a hidden field to store Model.Name -->
+                            <input type="hidden" name="productId" value="@Model.Id" />
+                            <input type="file" name="file" />
+
+                            <button>Upload the image</button>
+                        </div>
+                        @*<div class="form-group">
+                            @if (!string.IsNullOrEmpty(Model.ImageUrl))
+                            {
+                                <img src="@(Model.ImageUrl)" alt="Product Image" />
+                            }
+                            else
+                            {
+                                <p>No image available.</p>
+                            }
+                        </div>*@
+                </form>
+            
+            }
+       
+</div>
+<br />
+@*<div>
+    <a asp-controller="Category" asp-action="Details" asp-route-id="@Model.CategoryId" class="btn btn-secondary">Back to List</a>
+    |@if (signInManager.IsSignedIn(User) &&  User.IsInRole("Editor"))
+    {
+        <a asp-controller="Product" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+    }
+    |@if (signInManager.IsSignedIn(User) && (User.IsInRole("Administrator")))
+    {
+
+        <a asp-controller="Product" asp-action="Delete" asp-route-id=@Model.Id class="btn btn-danger">Delete</a>
+    }
+</div>*@
+@section Styles {
+    <style>
+        /* Set background color to black */
+        body {
+            background-image: url(https://th.bing.com/th/id/OIP.bacnlWcEwHYUe-f64_QzrAHaEo?rs=1&pid=ImgDetMain);
+            padding-top: 100px;
+        }
+
+
+
+        /* Additional styles for recipe content */
+        /* Add your custom styles here */
+    </style>
+}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+
+<section id="about">
+    <div class="menu_1 clearfix text-center">
+        <h1>@Model.Title</h1>
+    </div>
+        <div class="menu_2 clearfix">
+            <div class="col-sm-6 space_all">
+                <div class="menu_2_left p-5 pt-5 " style="padding-top:50px ;">
+
+                
+                    <img src="@Model.ImageUrl"  alt="Product Image">
+                    </div></div>
+  
+            <div class="col-sm-6 space_all">
+                <div class="menu_2_right about_menu_right clearfix">
+                       
+                    <h2 class="heading_tag "style="color:red;">Price: @Html.DisplayFor(modelItem => modelItem.Price)</h2>
+               
+                    <p style="color:darkseagreen !important ; ">@Html.DisplayFor(modelItem => modelItem.Description)</p>
+              
+        @if (signInManager.IsSignedIn(User))
+        {
+            <a asp-controller="Book" asp-action="AddProductToCart" asp-route-product="@Model.Id">
+                        <span id="boot-icon" class="bi bi-cart4" style="height:50px; color: rgb(255, 255, 255);">Add To Your Cart</span>
+            </a>
+        } </div>
+              </div>
+               
+        @if (signInManager.IsSignedIn(User))
+        {
+            <div class="text-center">
+                @if (User.IsInRole("Administrator"))
+                {
+                    <form asp-controller="Book" asp-action="UploadFile" method="post" enctype="multipart/form-data">
+
+                        <input type="hidden" name="productId" value="@Model.Id" />
+                        
+                        <div class="form-group">
+                            <input type="file" class="form-control" id="name" name="file">
+                 
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary"style="margin:20px">Upload Image</button>
+                    </form>
+                }
+                @if (User.IsInRole("Editor"))
+                {
+                    <a asp-controller="Book" asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-success">Edit</a>
+                }
+                @if (User.IsInRole("Administrator"))
+                {
+                    <a asp-controller="Book" asp-action="Delete" asp-route-id="@Model.Id" class="btn btn-danger" style="align-items:flex-end">Delete Product</a>
+                }
+            </div>
+        }
+        </div>
+</section>
+<div asp-validation-summary="All"></div>

@@ -91,11 +91,11 @@ namespace FoodRecipe.Migrations
                         {
                             Id = "1",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "0aadda9c-0b82-4b0f-9f69-ba163786ab28",
+                            ConcurrencyStamp = "c8cbf103-03f2-4c40-b2a7-2a89b20505f0",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "96a7806a-9094-4d65-b880-9a52cc6295ae",
+                            SecurityStamp = "40199964-7852-426c-a256-380c9695d2b1",
                             TwoFactorEnabled = false,
                             UserName = "user1@example.com"
                         },
@@ -103,11 +103,11 @@ namespace FoodRecipe.Migrations
                         {
                             Id = "2",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "ebdc5c6e-b11b-49f6-b47f-37edb0309dc2",
+                            ConcurrencyStamp = "fdae8dd4-9721-4131-bde0-2d65283b8c71",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "b2146718-588f-4242-9ece-b3d3af86ab41",
+                            SecurityStamp = "e2c9e32d-807b-426b-bec9-623a6817c172",
                             TwoFactorEnabled = false,
                             UserName = "user2@example.com"
                         },
@@ -115,14 +115,150 @@ namespace FoodRecipe.Migrations
                         {
                             Id = "3",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "cd9177fa-9984-40e8-9ad1-5d91e319ce6a",
+                            ConcurrencyStamp = "4c7a23f9-47de-4d69-9687-bedbc9762f7d",
                             EmailConfirmed = false,
                             LockoutEnabled = false,
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "765ec7fc-ecd5-4865-82aa-339a80128e3e",
+                            SecurityStamp = "bf4bfd92-9d2f-4523-8856-9e02c2bd804f",
                             TwoFactorEnabled = false,
                             UserName = "user3@example.com"
                         });
+                });
+
+            modelBuilder.Entity("FoodRecipe.Models.Book", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Book");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Description = "Known for her incredibly approachable, slimmed-down, and outrageously delicious recipes, Erin Clarke is the creator of the smash-hit food blog in the healthy-eating blogosphere, Well Plated by Erin. Clarke's site welcomes millions of readers, and with good reason: Her recipes are fast, budget-friendly, and clever; she never includes an ingredient you can't find in a regular supermarket or that isn't essential to a dish's success, and she hacks her recipes for maximum nutrition by using the \"stealthy healthy\" ingredient swaps she's mastered so that you don't lose an ounce of flavor.",
+                            ImageUrl = "https://m.media-amazon.com/images/I/91aPyBeX1-L._AC._SR360,460.jpg",
+                            Price = 19.989999999999998,
+                            Title = "The Well Plated Cookbook: Fast, Healthy Recipes You'll Want to Eat"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Description = "NEW YORK TIMES BESTSELLER • An inviting collection of more than 100 trusted, budget-friendly recipes for every meal and occasion from the creator of the wildly popular website Natasha’s Kitchen.\r\n\r\n“With delicious recipes and fun entertaining ideas, you’ll find inspiration and joy on every page.”—Jennifer Segal, author and creator of Once Upon a Chef",
+                            ImageUrl = "https://m.media-amazon.com/images/I/81GpdYtKWrL._SY425_.jpg",
+                            Price = 24.989999999999998,
+                            Title = "Natasha's Kitchen: 100+ Easy Family-Favorite Recipes You'll Make Again and Again: A Cookbook"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Description = "Even Ina Garten, America's most-trusted and beloved home cook, sometimes finds cooking stressful. To make life easy she relies on a repertoire of recipes that she knows will turn out perfectly every time. Cooking night after night during the pandemic inspired her to re-think the way she approached dinner, and the result is this collection of comforting and delicious recipes that you’ll love preparing and serving. You’ll find lots of freeze-ahead, make-ahead, prep-ahead, and simply assembled recipes so you, too, can make dinner a breeze.",
+                            ImageUrl = "https://m.media-amazon.com/images/I/813lOCfitDL._SY425_.jpg",
+                            Price = 14.99,
+                            Title = "Go-To Dinners: A Barefoot Contessa Cookbook"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Description = "What does comfort mean in The Comfortable Kitchen? ForAlex Snodgrass, New York Times bestselling author of The Defined Dish, bringing her family around the table to share a home-cooked meal is a favorite way to show love. Her recipes are designed to bring joy into that display of affection, from your own comfort cooking to your loved ones’ delight at the delicious flavors, to knowing that you’re caring for your family’s nutrition with each bite.",
+                            ImageUrl = "https://m.media-amazon.com/images/I/818ZASRQ3uL._SY425_.jpg",
+                            Price = 29.989999999999998,
+                            Title = "The Comfortable Kitchen: 105 Laid-Back, Healthy, and Wholesome Recipes (A Defined Dish Book) "
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Description = "Want to bake the most-awesome-ever cupcakes? Or surprise your family with breakfast tacos on Sunday morning? Looking for a quick snack after school? Or maybe something special for a sleepover? It's all here. Learn to cook like a pro―it's easier than you think.",
+                            ImageUrl = "https://m.media-amazon.com/images/I/91GqAI8VDUL._SY425_.jpg",
+                            Price = 19.989999999999998,
+                            Title = "The Complete Cookbook for Young Chefs"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Description = "A decade-by-decade cookbook that highlights the best (and a few of the worst) baking recipes from the 20th century",
+                            ImageUrl = "https://m.media-amazon.com/images/I/81o-PyNHxbL._SL1500_.jpg",
+                            Price = 29.989999999999998,
+                            Title = "Baking Yesteryear"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Description = "Known for her incredibly approachable, slimmed-down, and outrageously delicious recipes, Erin Clarke is the creator of the smash-hit food blog in the healthy-eating blogosphere, Well Plated by Erin. Clarke's site welcomes millions of readers, and with good reason: Her recipes are fast, budget-friendly, and clever; she never includes an ingredient you can't find in a regular supermarket or that isn't essential to a dish's success, and she hacks her recipes for maximum nutrition by using the \"stealthy healthy\" ingredient swaps she's mastered so that you don't lose an ounce of flavor.",
+                            ImageUrl = "https://m.media-amazon.com/images/I/91mis0XfORL._SL1500_.jpg",
+                            Price = 16.989999999999998,
+                            Title = "Snoop Dogg Presents Goon with the Spoon"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Description = "Alex Snodgrass of TheDefinedDish.com is the third author in the popular Whole30 Endorsed series. With gluten-free, dairy-free, and grain-free recipes that sound and look way too delicious to be healthy, this is a cookbook people can turn to after completing a Whole30, when they’re looking to reintroduce healthful ingredients like tortillas, yogurt, beans, and legumes. Recipes like Chipotle Chicken Tostadas with Pineapple Salsa or Black Pepper Chicken are easy enough to prepare even after a busy day at work. There are no esoteric ingredients in these recipes, but instead something to suit every taste, each dish clearly marked if it is Whole30 compliant, paleo, gluten-free, dairy-free, and more. Alex includes delicious variations, too, such as using lettuce wraps instead of taco shells, to ensure recipes can work for almost any diet. And for anyone looking to stick to their Whole30 for longer, at least sixty of the recipes are fully compliant.",
+                            ImageUrl = "https://m.media-amazon.com/images/I/71es0sIm5jL._SY425_.jpg",
+                            Price = 34.990000000000002,
+                            Title = "The Defined Dish: Whole30 Endorsed, Healthy and Wholesome Weeknight Recipes (A Defined Dish Book)"
+                        });
+                });
+
+            modelBuilder.Entity("FoodRecipe.Models.Cart", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<double>("Total")
+                        .HasColumnType("float");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Cart");
+                });
+
+            modelBuilder.Entity("FoodRecipe.Models.CartBooks", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("BookId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id", "BookId");
+
+                    b.HasIndex("BookId");
+
+                    b.ToTable("CartBooks");
                 });
 
             modelBuilder.Entity("FoodRecipe.Models.Category", b =>
@@ -297,6 +433,47 @@ namespace FoodRecipe.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Likes");
+                });
+
+            modelBuilder.Entity("FoodRecipe.Models.Order", b =>
+                {
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAdress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("OrderId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("FoodRecipe.Models.Recipe", b =>
@@ -525,6 +702,25 @@ namespace FoodRecipe.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("FoodRecipe.Models.CartBooks", b =>
+                {
+                    b.HasOne("FoodRecipe.Models.Book", "Book")
+                        .WithMany()
+                        .HasForeignKey("BookId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FoodRecipe.Models.Cart", "Cart")
+                        .WithMany("CartBooks")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Book");
+
+                    b.Navigation("Cart");
+                });
+
             modelBuilder.Entity("FoodRecipe.Models.Comment", b =>
                 {
                     b.HasOne("FoodRecipe.Models.Recipe", "Recipe")
@@ -580,6 +776,17 @@ namespace FoodRecipe.Migrations
                     b.Navigation("Recipe");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("FoodRecipe.Models.Order", b =>
+                {
+                    b.HasOne("FoodRecipe.Models.Cart", "ShoppingCart")
+                        .WithOne()
+                        .HasForeignKey("FoodRecipe.Models.Order", "OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ShoppingCart");
                 });
 
             modelBuilder.Entity("FoodRecipe.Models.Recipe", b =>
@@ -642,6 +849,11 @@ namespace FoodRecipe.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FoodRecipe.Models.Cart", b =>
+                {
+                    b.Navigation("CartBooks");
                 });
 
             modelBuilder.Entity("FoodRecipe.Models.Category", b =>
